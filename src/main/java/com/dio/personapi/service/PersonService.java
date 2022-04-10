@@ -6,12 +6,10 @@ import com.dio.personapi.entities.Person;
 import com.dio.personapi.exception.PersonNotFoundException;
 import com.dio.personapi.mapper.PersonMapper;
 import com.dio.personapi.repository.PersonRepository;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +28,7 @@ public class PersonService {
         Person savedPerson = personRepository.save(personToSave);
         return MessageResponseDTO
                 .builder()
-                .message("Created person with ID " + personToSave.getId())
+                .message("Created person with ID " + savedPerson.getId())
                 .build();
     }
 
