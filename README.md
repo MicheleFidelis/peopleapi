@@ -4,6 +4,7 @@ API developed during live coding realized by digital innovation one.
 
 <h3>Technologies used</h3>
 This project was developed with:
+
 * Java 11
 * Spring Boot 2.6.6
 * Spring JPA
@@ -14,6 +15,7 @@ This project was developed with:
 * Heroku
 
 <h3>Run</h3>
+
 ```shell script
 mvn spring-boot:run 
 ```
