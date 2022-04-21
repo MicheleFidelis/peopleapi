@@ -8,6 +8,8 @@ import com.dio.personapi.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +31,8 @@ public class PersonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonDTO>> listAll() {
-        return ResponseEntity.ok(personService.listAll());
+    public ResponseEntity<Page<PersonDTO>> listAll(Pageable pageable) {
+        return ResponseEntity.ok(personService.listAll(pageable));
     }
 
     @GetMapping("/{id}")

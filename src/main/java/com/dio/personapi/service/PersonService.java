@@ -8,6 +8,8 @@ import com.dio.personapi.mapper.PersonMapper;
 import com.dio.personapi.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,11 +34,9 @@ public class PersonService {
         return personMapper.toDTO(person);
     }
 
-    public List<PersonDTO> listAll() {
-        List<Person> allPeople = personRepository.findAll();
-        return allPeople.stream()
-                .map(personMapper::toDTO)
-                .collect(Collectors.toList());
+    public Page<PersonDTO> listAll(Pageable pageable) {
+        Page<Person> allPeople = personRepository.findAll(pageable);
+        return allPeople.map(personMapper::toDTO);
     }
 
     public List<Person> findByFirstName(String name) {
