@@ -20,7 +20,7 @@ public class PhoneDTO {
     @Enumerated
     PhoneType type;
 
-    @NotEmpty
+    @NotEmpty(message = "The phone number cannot be empty")
     @Size(min = 13, max = 14)
     String number;
 }

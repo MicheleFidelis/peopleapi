@@ -19,22 +19,22 @@ import java.util.List;
 public class PersonDTO {
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "The fisrt name cannot be empty")
     @Size(min = 2, max = 100)
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "The last name cannot be empty")
     @Size(min = 2, max = 100)
     private String lastName;
 
-    @NotEmpty
+    @NotEmpty(message = "The CPF cannot be empty")
     @CPF
     private String cpf;
 
-    @NotNull
+    @NotNull(message = "The birthdate cannot be null")
     private String birthDate;
 
     @Valid
-    @NotEmpty
+    @NotEmpty(message = "The phone cannot be empty")
     private List<PhoneDTO> phones;
 }
