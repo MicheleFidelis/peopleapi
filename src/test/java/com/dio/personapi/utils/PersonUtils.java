@@ -28,6 +28,17 @@ public class PersonUtils {
                 .build();
     }
 
+    public static PersonDTO createFakeDTOEntity() {
+        return PersonDTO.builder()
+                .id(1L)
+                .firstName(FIRST_NAME)
+                .lastName(LAST_NAME)
+                .cpf(CPF_NUMBER)
+                .birthDate("04-04-2010")
+                .phones(Collections.singletonList(PhoneUtils.createFakeDTO()))
+                .build();
+    }
+
     public static Person createFakeEntity() {
         return Person.builder()
                 .id(PERSON_ID)

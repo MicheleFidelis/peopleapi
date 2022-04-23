@@ -3,7 +3,6 @@ package com.dio.personapi.repository;
 import com.dio.personapi.entities.Person;
 import com.dio.personapi.entities.Phone;
 import com.dio.personapi.enums.PhoneType;
-import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @DisplayName("Tests for person repository")
-@Log4j2
 class PersonRepositoryTest {
 
     @Autowired
@@ -92,7 +90,6 @@ class PersonRepositoryTest {
     void givenPersonObject_whenReplacePerson_thenReturnReplacePerson() {
 
         Person personSaved = this.personRepository.save(person);
-        log.info(personSaved.getId());
 
         personSaved.setFirstName("Maria");
         personSaved.setLastName("Silva");
