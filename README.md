@@ -8,10 +8,11 @@ This project was developed with:
 * Java 11
 * Spring Boot 2.6.6
 * Spring JPA
-* H2 database 1.4.1
+* MySQL
 * Maven 3.6.3
 * Mapstruct 1.4.2
 * Lombok
+* Docker
 * Heroku
 
 <h3>Run</h3>
@@ -24,5 +25,10 @@ By default, the API will be available at:
 http://localhost:8080/api/v1/people
 ```
 <h3>Changes and evolutions</h3>
+* Change H2 database for MySQL
+* Using docker 
+* Exception handling
+* Pagination
+* Unit tests 
 in progress
 
