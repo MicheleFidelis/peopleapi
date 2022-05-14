@@ -7,7 +7,6 @@ import com.dio.personapi.exception.ResourceNotFoundException;
 import com.dio.personapi.mapper.PersonMapper;
 import com.dio.personapi.repository.PersonRepository;
 import com.dio.personapi.utils.PersonUtils;
-import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +28,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DisplayName("Test for class personService")
-@Log4j2
 class PersonServiceTest {
 
     @Mock
@@ -89,7 +87,6 @@ class PersonServiceTest {
                 .thenReturn(personPage);
 
         String expectedNameFirstName = PersonUtils.createFakeDTOEntity().getFirstName();
-        log.info("test " + personPage.toList().size());
 
         Page<PersonDTO> personDTOPage = personService.listAll(PageRequest.of(1,3));
 
