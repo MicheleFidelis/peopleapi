@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -26,10 +25,10 @@ public class PersonService {
         Person personToSave = personMapper.toModel(personDTO);
 
         Person savedPerson = personRepository.save(personToSave);
-        return createMessageResponse(savedPerson.getId(), "Saved person with Id ");
+        return createMessageResponse(savedPerson.getId(), "Saved person with Id");
     }
 
-    public PersonDTO findById(Long id) throws ResourceNotFoundException {
+    public PersonDTO findById(Long id) {
         Person person = verifyIfExists(id);
         return personMapper.toDTO(person);
     }
@@ -43,20 +42,18 @@ public class PersonService {
         return personRepository.findByFirstName(name);
     }
 
-    public void delete(Long id) throws ResourceNotFoundException {
+    public void delete(Long id) {
         verifyIfExists(id);
 
         personRepository.deleteById(id);
     }
 
-    public void replace(Long id, PersonDTO personDTO) throws ResourceNotFoundException {
+    public void replace(Long id, PersonDTO personDTO) {
         verifyIfExists(id);
 
         Person personToUpdate = personMapper.toModel(personDTO);
 
-        Person savedPerson = personRepository.save(personToUpdate);
-
-        createMessageResponse(savedPerson.getId(), "Update person with Id ");
+        personRepository.save(personToUpdate);
     }
 
     private MessageResponseDTO createMessageResponse(Long id, String message) {
@@ -66,8 +63,8 @@ public class PersonService {
                 .build();
     }
 
-    private Person verifyIfExists(Long id) throws ResourceNotFoundException {
+    private Person verifyIfExists(Long id) {
         return personRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Person not found with id:" + id));
     }
 }

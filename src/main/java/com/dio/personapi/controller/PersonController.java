@@ -36,7 +36,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonDTO> findById(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<PersonDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(personService.findById(id));
     }
 
@@ -46,13 +46,13 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> replace (@PathVariable Long id, @RequestBody PersonDTO personDTO) throws ResourceNotFoundException {
+    public ResponseEntity<Void> replace (@PathVariable Long id, @RequestBody PersonDTO personDTO) {
         personService.replace(id, personDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         personService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
