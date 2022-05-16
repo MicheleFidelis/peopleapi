@@ -3,7 +3,6 @@ package com.dio.personapi.controller;
 import com.dio.personapi.dto.MessageResponseDTO;
 import com.dio.personapi.dto.PersonDTO;
 import com.dio.personapi.entities.Person;
-import com.dio.personapi.exception.ResourceNotFoundException;
 import com.dio.personapi.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +26,7 @@ public class PersonController {
     private final PersonService personService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<MessageResponseDTO> createPerson(@RequestBody @Valid PersonDTO personDTO) {
         return new ResponseEntity<>(personService.createPerson(personDTO), HttpStatus.CREATED);
     }
