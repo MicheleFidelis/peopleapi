@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,6 +40,13 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PersonDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(personService.findById(id));
+    }
+
+    @GetMapping("/by-id/{id}")
+    public ResponseEntity<PersonDTO> findByIdAuthenticationPrincipal(@PathVariable Long id,
+                                                                    @AuthenticationPrincipal UserDetails userDetails) {
+        log.info(String.valueOf(userDetails));
         return ResponseEntity.ok(personService.findById(id));
     }
 
