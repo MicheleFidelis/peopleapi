@@ -10,3 +10,20 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    web: trace
+    org:
+      hibernate:
+        SQL: debug
+      springframework:
+        boot:
+          autoconfigure=ERROR:
+        web: trace
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
+
